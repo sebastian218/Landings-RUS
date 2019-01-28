@@ -74,7 +74,7 @@ window.addEventListener("load",function(){
         Nombre_error.innerHTML = "El campo es requerido.";
 
       }else {
-        nombre.style.backgroundColor = "";
+        nombre.style.backgroundColor = "rgba(204, 204, 204, 1.0)";
         Nombre_error.innerHTML = "";
       }
 
@@ -89,7 +89,7 @@ window.addEventListener("load",function(){
      Apellido_error.innerHTML = "El campo es requerido.";
 
    }else {
-     apellido.style.backgroundColor ="" ;
+     apellido.style.backgroundColor ="rgba(204, 204, 204, 1.0) !important" ;
      Apellido_error.innerHTML ="";
    }
 
@@ -108,7 +108,7 @@ window.addEventListener("load",function(){
      Mail_error.innerHTML = "El campo debe ser de tipo email.";
    }
      else {
-     mail.style.backgroundColor ="" ;
+     mail.style.backgroundColor ="rgba(204, 204, 204, 1.0)" ;
      Mail_error.innerHTML ="";
    }
  });
@@ -131,7 +131,7 @@ window.addEventListener("load",function(){
      }
 
      else {
-     telefono.style.backgroundColor ="" ;
+     telefono.style.backgroundColor ="rgba(204, 204, 204, 1.0)" ;
      Movil_error.innerHTML ="";
    }
 
