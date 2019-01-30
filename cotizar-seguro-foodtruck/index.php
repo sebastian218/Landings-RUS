@@ -9,7 +9,31 @@
     License: You must have a valid license purchased only from ThemeForest (the above link) in order to legally use the theme for your project.
     Copyright 2018.
 -->
+<?php
 
+$paisesJson =file_get_contents("../assets/codigoPaís.json");
+$codigoPaisArray = json_decode($paisesJson,true);
+
+/*segundo listado de codigos telefonicos*/
+
+$nombrepaisesJson=file_get_contents("../assets/paises.json");
+$nombrePaisesArray=json_decode($nombrepaisesJson,true);
+
+$codigoPaisesJson=file_get_contents("../assets/codigos.json");
+$codigoPaisesArray=json_decode($codigoPaisesJson,true);
+
+$paisesConCodigosAry = [];
+
+foreach ($codigoPaisesArray as $key => $codigo) {
+         foreach ($nombrePaisesArray as $keyPais => $pais) {
+              if ($keyPais === $key) {
+                $paisesConCodigosAry[$pais]= $codigo;
+              };
+         };
+};
+
+ksort($paisesConCodigosAry);
+ ?>
 <html lang="es">
 <head>
     <meta charset="utf-8">
@@ -29,6 +53,7 @@
      <script type="text/javascript" src="../assets/pruebaValidation.js">
 
      </script>
+     <link rel="stylesheet" href="../assets/stylesFormWatson.css">
     <!-- START: Styles -->
 
     <!-- Google Fonts -->
@@ -192,25 +217,38 @@
 
   </div>
 
+
+
+
+
+
   <div class="fieldLabel" style="display:none">Móvil</div>
-  <input type="text" name="Móvil" id="control_COLUMN20" placeholder="Teléfono *" label="Móvil" class="textInput defaultText form-control " style="margin-top:20px">
+
+  <div class="control movil_wrapper" style="">
+
+    <div class="control codigo_pais_input tel_prefix">
+      <label for="codigoPais" class="control" style="margin-top:5px;display:none;"><b>País :</b></label>
+
+        <select class="  selectHeigth" name="codigPais" id="codigoPaises">
+              <?php foreach ($paisesConCodigosAry as $pais => $codigo  ): ?>
+                <option value="<?="+" .$codigo?>" <?php if ($pais === "Argentina"): ?>
+                        SELECTED
+                <?php endif; ?> ><?=$pais?> (<?="+". $codigo;?>)</option>
+              <?php endforeach; ?>
+        </select>
+    </div>
+
+<div class="control" style="width:100%;">
+  <input type="text" name="Móvil" id="control_COLUMN20" placeholder="(Área) Teléfono *" label="Móvil" class="textInput defaultText form-control " style="margin-top:20px ;">
   <div class="control" id="Movil_error" style="color:rgba(217, 83, 79); font-weight:bold ">
 
   </div>
+</div>
 
-<!--
-  <div class="fieldLabel" style="display:none">Elegir Plan:</div>
-   <select name="FoodTruck_Plan" id="control_COLUMN26" label="Plan" class="selectInput defaultText form-control " style="margin-top:20px">
-     <option value="" SELECTED  ><b>Elegir Plan</b></option>
-     <option value="1"><b> Plan1 </b> ($275) </option>
-     <option value="2"><b>Plan2</b> ($375) </option>
 
-   </select>
-   <div class="control" id="Plan_error" style="color:rgba(217, 83, 79)">
+  </div>
 
-   </div>
 
--->
 <div class="fs-20 radioButtons" style="margin-top:20px">
   <label label-default="" name="plan" class="control-label">Elegir Plan: </label>
   <div class="form-check form-check-inline">

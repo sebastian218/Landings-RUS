@@ -53,7 +53,7 @@ window.addEventListener("load",function(){
                if (!plan1.checked  && !plan2.checked ) {
 
                   radioButtons.style.backgroundColor = "rgba(217, 83, 79, 0.4)";
-                  Plan_error.innerHTML = "Debes seleccionar un plan.";
+                  Plan_error.innerHTML = "Debés seleccionar un plan.";
 
                   event.preventDefault();
                } else {
@@ -101,11 +101,13 @@ window.addEventListener("load",function(){
 
      mail.style.backgroundColor= "rgba(217, 83, 79, 0.4)";
      Mail_error.innerHTML = "El campo es requerido.";
+     return;
 
    }
      if (!re.test(String(mail.value).toLowerCase())) {
      mail.style.backgroundColor= "rgba(217, 83, 79, 0.4)";
      Mail_error.innerHTML = "El campo debe ser de tipo email.";
+     return;
    }
      else {
      mail.style.backgroundColor ="rgba(204, 204, 204, 1.0)" ;
@@ -113,21 +115,29 @@ window.addEventListener("load",function(){
    }
  });
 
- telefono.addEventListener("blur",function(){
+ telefono.addEventListener("change",function(){
 
-      var reNum = /[0-9]/;
+      var reNum = /^\d+$/;
 
       if(telefono.value === ""){
 
       telefono.style.backgroundColor= "rgba(217, 83, 79, 0.4)";
       Movil_error.innerHTML = "El campo es requerido.";
 
+      return;
+    }
 
-    } if (!reNum.test(String(telefono.value).toLowerCase())){
+     if (!reNum.test(String(telefono.value).toLowerCase())){
 
        telefono.style.backgroundColor= "rgba(217, 83, 79, 0.4)";
        Movil_error.innerHTML = "El teléfono no es válido.";
+       return;
+     }
+     if (telefono.value.trim().length < 11) {
 
+       telefono.style.backgroundColor= "rgba(217, 83, 79, 0.4)";
+       Movil_error.innerHTML = "El teléfono no es válido, se requiere ingresar código de area";
+       return;
      }
 
      else {
@@ -144,7 +154,7 @@ plan1.addEventListener("change",function(){
   if (!plan1.checked ) {
 
      radioButtons.style.backgroundColor = "rgba(217, 83, 79, 0.4)";
-     Plan_error.innerHTML = "Debes seleccionar un plan.";
+     Plan_error.innerHTML = "Debés seleccionar un plan.";
 
      event.preventDefault();
   } else {
@@ -159,7 +169,7 @@ plan2.addEventListener("change",function(){
   if (!plan2.checked ) {
 
      radioButtons.style.backgroundColor = "rgba(217, 83, 79, 0.4)";
-     Plan_error.innerHTML = "Debes seleccionar un plan.";
+     Plan_error.innerHTML = "Debés seleccionar un plan.";
 
      event.preventDefault();
   } else {
